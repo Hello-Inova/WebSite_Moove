@@ -264,43 +264,57 @@ img { max-width: 100%; display: block; }
   max-width: 52ch;
 }
 
+/* Mobile-first: os dois botões ficam lado a lado desde telas estreitas
+   (flex:1 divide a linha igualmente); a partir de 640px voltam ao tamanho
+   "pill" confortável original, já com largura de sobra. */
 .hero-cta-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-wrap: nowrap;
+  gap: 10px;
   margin: 24px 0 28px;
 }
+.hero-cta-row .btn {
+  flex: 1 1 0;
+  padding: 13px 10px;
+  font-size: 0.82rem;
+}
 
+/* Mobile-first: os 3 itens ficam numa linha só, lado a lado (com quebra
+   de linha só se a tela for realmente minúscula) — em vez de empilhados. */
 .hero-trust {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 0.9rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  font-size: 0.78rem;
   color: var(--gray-700);
   font-weight: 500;
 }
-.hero-trust li { display: flex; align-items: center; gap: 8px; }
-.hero-trust .icon { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
+.hero-trust li { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
+.hero-trust .icon { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
 
-/* ---------- Van animada como marca d'água do fundo do hero ---------- */
-/* Grande, bem translúcida, atrás de todo o conteúdo — dá pra reconhecer que
-   é uma van, mas não compete com o texto. `pointer-events: none` pra nunca
-   atrapalhar clique em nada por cima dela. */
-.hero-van-bg {
-  position: absolute;
-  z-index: 0;
-  pointer-events: none;
-  width: min(900px, 130vw);
+/* ---------- Van animada ---------- */
+/* Duas versões da mesma ilustração: no celular ela entra no fluxo normal,
+   abaixo da lista de confiança (`.hero-van-mobile`); do tablet pra cima
+   vira marca d'água grande e translúcida atrás de todo o conteúdo
+   (`.hero-van-bg`). Mobile-first: começa mostrando só a versão mobile. */
+.hero-van-bg { display: none; }
+
+.hero-van-mobile {
+  display: block;
+  width: 100%;
+  max-width: 340px;
   height: auto;
-  right: -8%;
-  bottom: -6%;
-  opacity: 0.09;
+  margin: 28px auto 0;
+  opacity: 0.32;
+  pointer-events: none;
   animation: van-bounce 2.6s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
+
 @keyframes van-bounce {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-4px) rotate(-0.3deg); }
@@ -315,7 +329,7 @@ img { max-width: 100%; display: block; }
   to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-van-bg, .van-wheel { animation: none; }
+  .hero-van-bg, .hero-van-mobile, .van-wheel { animation: none; }
 }
 
 /* Tira de "pista" tracejada correndo no rodapé do hero — mesma ideia da
@@ -586,7 +600,27 @@ img { max-width: 100%; display: block; }
   .header-actions .btn-primary { padding: 12px 22px; font-size: 0.95rem; }
 
   .hero { padding: 76px 0 90px; }
-  .hero-trust-row { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+
+  .hero-cta-row .btn { flex: 0 0 auto; padding: 16px 32px; font-size: 1rem; }
+  .hero-trust { gap: 10px 24px; font-size: 0.9rem; }
+  .hero-trust .icon { width: 18px; height: 18px; }
+
+  /* A partir daqui volta a versão "marca d'água" grande atrás do
+     conteúdo; a versão em fluxo normal (mobile) some. */
+  .hero-van-mobile { display: none; }
+  .hero-van-bg {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    pointer-events: none;
+    width: min(900px, 130vw);
+    height: auto;
+    right: -8%;
+    bottom: -6%;
+    opacity: 0.16;
+    animation: van-bounce 2.6s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
 
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
   .grid-4 { grid-template-columns: repeat(4, 1fr); }

@@ -111,11 +111,41 @@
           </a>
         </div>
 
-        <ul class="hero-trust hero-trust-row">
+        <ul class="hero-trust">
           <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Sem taxa de adesão</li>
           <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cadastro em minutos</li>
           <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cancele quando quiser</li>
         </ul>
+
+        <!-- Só aparece no celular (ver CSS) — a mesma van, só que abaixo da
+             lista de confiança em vez de sobreposta atrás do texto, pra não
+             embolar leitura em telas estreitas. No desktop, a versão de
+             fundo (.hero-van-bg lá em cima) já dá conta do recado. -->
+        <svg class="hero-van-mobile" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M30 150 L30 95 Q30 78 48 78 L230 78 Q248 78 258 92 L282 122 Q290 132 290 145 L290 150 Z" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
+          <path d="M60 78 L60 130 M120 78 L120 130 M180 78 L180 130" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
+          <rect x="34" y="100" width="20" height="26" rx="4" fill="#1e293b"/>
+          <rect x="64" y="100" width="50" height="26" rx="4" fill="#1e293b"/>
+          <rect x="124" y="100" width="50" height="26" rx="4" fill="#1e293b"/>
+          <path d="M184 100 h40 l18 26 h-58 z" fill="#1e293b"/>
+          <rect x="30" y="130" width="260" height="20" fill="#f97316"/>
+          <text x="150" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="14" fill="#1e293b">ESCOLAR</text>
+          <rect x="30" y="150" width="260" height="10" fill="#1e293b"/>
+          <g class="van-wheel" style="transform-origin: 85px 168px;">
+            <circle cx="85" cy="168" r="20" fill="#1e293b"/>
+            <line x1="85" y1="168" x2="85" y2="151" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            <line x1="85" y1="168" x2="99.7" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            <line x1="85" y1="168" x2="70.3" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <circle cx="85" cy="168" r="8" fill="#f97316"/>
+          <g class="van-wheel" style="transform-origin: 245px 168px;">
+            <circle cx="245" cy="168" r="20" fill="#1e293b"/>
+            <line x1="245" y1="168" x2="245" y2="151" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            <line x1="245" y1="168" x2="259.7" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+            <line x1="245" y1="168" x2="230.3" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <circle cx="245" cy="168" r="8" fill="#f97316"/>
+        </svg>
       </div>
     </div>
   </section>
