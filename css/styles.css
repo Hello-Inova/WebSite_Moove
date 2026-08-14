@@ -32,6 +32,14 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+::selection { background: var(--orange); color: var(--white); }
+
+a:focus-visible, button:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -113,7 +121,8 @@ img { max-width: 100%; display: block; }
 
 .btn-lg { padding: 15px 26px; font-size: 1rem; }
 
-.icon-inline { width: 16px; height: 16px; }
+.icon-inline { width: 16px; height: 16px; transition: transform 0.2s ease; }
+.btn:hover .icon-inline { transform: translateX(3px); }
 
 .btn-pulse { position: relative; }
 .btn-pulse::after {
@@ -159,7 +168,8 @@ img { max-width: 100%; display: block; }
 }
 
 .brand { display: inline-flex; align-items: center; }
-.brand-logo { height: 30px; width: auto; }
+.brand-logo { height: 30px; width: auto; transition: transform 0.25s ease; }
+.brand:hover .brand-logo { transform: scale(1.06) rotate(-2deg); }
 
 .main-nav {
   display: none;
@@ -279,22 +289,45 @@ img { max-width: 100%; display: block; }
   font-size: 0.82rem;
 }
 
-/* Mobile-first: os 3 itens ficam numa linha só, lado a lado (com quebra
-   de linha só se a tela for realmente minúscula) — em vez de empilhados. */
 .hero-trust {
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 8px 14px;
-  font-size: 0.78rem;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 0.9rem;
   color: var(--gray-700);
   font-weight: 500;
 }
-.hero-trust li { display: flex; align-items: center; gap: 5px; white-space: nowrap; }
-.hero-trust .icon { width: 15px; height: 15px; color: var(--orange); flex-shrink: 0; }
+.hero-trust li { display: flex; align-items: center; gap: 8px; }
+.hero-trust .icon { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
+
+/* Iconzinhos flutuando no fundo do hero — só entram em telas maiores,
+   onde já tem espaço de sobra e a van vira marca d'água (não competem
+   com a lista de confiança nem com a van em fluxo do celular). */
+.hero-float { display: none; }
+@media (min-width: 860px) {
+  .hero-float {
+    display: block;
+    position: absolute;
+    z-index: 0;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+    pointer-events: none;
+    animation: float-drift 5s ease-in-out infinite;
+  }
+  .hero-float-1 { top: 20%; left: 4%; }
+  .hero-float-2 { top: 66%; right: 8%; animation-delay: 1.4s; }
+}
+@keyframes float-drift {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(6deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-float { animation: none; }
+}
 
 /* ---------- Van animada ---------- */
 /* Duas versões da mesma ilustração: no celular ela entra no fluxo normal,
@@ -356,6 +389,14 @@ img { max-width: 100%; display: block; }
   .hero-road-strip { animation: none; }
 }
 
+/* ---------- Divisores em onda entre seções ---------- */
+.wave-divider { line-height: 0; }
+.wave-divider svg { display: block; width: 100%; height: 40px; }
+.wave-divider-1 { background: var(--white); }
+.wave-divider-1 svg path { fill: var(--navy-dark); }
+.wave-divider-2 { background: var(--navy-dark); }
+.wave-divider-2 svg path { fill: var(--orange); }
+
 /* ---------- Seções genéricas ---------- */
 .section { padding: 64px 0; }
 .section-title {
@@ -377,8 +418,13 @@ img { max-width: 100%; display: block; }
   padding: 22px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--gray-200);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.pain-icon { font-size: 1.8rem; margin-bottom: 10px; }
+.pain-card:hover { box-shadow: var(--shadow-md); }
+.pain-card:nth-child(odd):hover { transform: translateY(-4px) rotate(-1.2deg); }
+.pain-card:nth-child(even):hover { transform: translateY(-4px) rotate(1.2deg); }
+.pain-icon { display: inline-block; font-size: 1.8rem; margin-bottom: 10px; transition: transform 0.3s ease; }
+.pain-card:hover .pain-icon { transform: scale(1.2) rotate(-8deg); }
 .pain-card p { margin: 0; color: var(--navy); }
 
 .pains-punchline {
@@ -392,13 +438,26 @@ img { max-width: 100%; display: block; }
 
 /* ---------- Recursos ---------- */
 .feature-card {
+  position: relative;
   background: var(--white);
   border: 1px solid var(--gray-200);
   border-radius: var(--radius);
   padding: 26px 22px;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+.feature-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
 .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.feature-card:hover::before { transform: scaleX(1); }
 
 .feature-icon-wrap {
   width: 48px;
@@ -410,6 +469,12 @@ img { max-width: 100%; display: block; }
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+.feature-card:hover .feature-icon-wrap {
+  transform: rotate(-6deg) scale(1.08);
+  background: var(--orange);
+  color: var(--white);
 }
 .feature-icon { width: 24px; height: 24px; }
 
@@ -448,16 +513,36 @@ img { max-width: 100%; display: block; }
   justify-content: center;
   margin: 0 auto 14px;
   box-shadow: 0 0 0 6px rgba(249, 115, 22, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+.step:hover .step-number { transform: scale(1.1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0.22); }
 .step h3 { font-size: 1rem; color: var(--white); margin-bottom: 6px; }
 .step p { color: #cbd5e1; font-size: 0.9rem; margin: 0; }
 
 /* ---------- CTA banner ---------- */
 .cta-banner {
+  position: relative;
+  overflow: hidden;
   background: linear-gradient(135deg, var(--orange), var(--orange-dark));
   color: var(--white);
 }
+.cta-banner::before {
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.09) 0 2px, transparent 2px 22px);
+  animation: route-drift 6s linear infinite;
+}
+@keyframes route-drift {
+  from { background-position: 0 0; }
+  to { background-position: 120px 120px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cta-banner::before { animation: none; }
+}
 .cta-banner-inner {
+  position: relative;
+  z-index: 1;
   padding: 56px 20px;
   text-align: center;
 }
@@ -472,7 +557,11 @@ img { max-width: 100%; display: block; }
   border-radius: 14px;
   overflow: hidden;
   background: var(--white);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+.accordion-item:hover { border-color: var(--orange-light); box-shadow: var(--shadow-sm); }
+.accordion-trigger { transition: color 0.2s ease; }
+.accordion-trigger:hover { color: var(--orange-dark); }
 .accordion-trigger {
   width: 100%;
   display: flex;
@@ -508,18 +597,14 @@ img { max-width: 100%; display: block; }
   padding-bottom: 32px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-/* Logo colorido (não convertido pra branco) — precisa de um fundo claro
-   por trás pra não perder contraste no rodapé escuro, já que o texto
-   "Moove" do logo é navy. */
-.footer-logo-chip {
-  display: inline-flex;
-  align-items: center;
-  background: var(--white);
-  padding: 8px 14px;
-  border-radius: 12px;
+/* Sem fundo/chip atrás do logo — ele vira branco (o original é quase todo
+   navy, ficaria invisível no rodapé escuro sem isso) com um leve brilho
+   laranja de assinatura da marca. */
+.footer-logo {
+  height: 26px;
   margin-bottom: 12px;
+  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(249, 115, 22, 0.35));
 }
-.footer-logo { height: 24px; }
 .footer-brand p { color: #94a3b8; font-size: 0.88rem; max-width: 32ch; }
 
 .footer-nav { display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; }
@@ -531,6 +616,7 @@ img { max-width: 100%; display: block; }
 .footer-contact a:hover { color: var(--orange-light); }
 
 .whatsapp-link {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 7px;
@@ -542,22 +628,39 @@ img { max-width: 100%; display: block; }
   font-size: 0.85rem !important;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
+.whatsapp-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  animation: pulse-ring-green 2.6s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes pulse-ring-green {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45); }
+  70% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
 .whatsapp-link:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 18px rgba(37, 211, 102, 0.35);
   color: var(--navy-dark) !important;
 }
 .whatsapp-link .icon-inline { width: 16px; height: 16px; }
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-link::after { animation: none; }
+}
 
 .footer-bottom { padding: 20px 20px 26px; font-size: 0.8rem; color: #64748b; text-align: center; }
 
 /* ---------- Scroll reveal ---------- */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(24px) scale(0.98);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
-[data-reveal].is-visible { opacity: 1; transform: translateY(0); }
+[data-reveal].is-visible { opacity: 1; transform: translateY(0) scale(1); }
 [data-reveal-delay="1"] { transition-delay: 0.08s; }
 [data-reveal-delay="2"] { transition-delay: 0.16s; }
 [data-reveal-delay="3"] { transition-delay: 0.24s; }
@@ -584,6 +687,29 @@ img { max-width: 100%; display: block; }
     height: 2px;
     background: repeating-linear-gradient(90deg, var(--orange) 0 10px, transparent 10px 20px);
   }
+  /* Pontinho viajando pela linha — reforça a ideia de rota/trajeto que já
+     aparece em outros pontos do site (van, pista tracejada do hero). */
+  .steps-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    border-radius: 50%;
+    background: var(--orange);
+    box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.25);
+    animation: dot-travel 4s ease-in-out infinite;
+  }
+  @keyframes dot-travel {
+    0% { left: 0%; }
+    50% { left: 100%; }
+    100% { left: 0%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .steps-line::after { animation: none; }
+  }
 }
 
 @media (min-width: 860px) {
@@ -594,7 +720,19 @@ img { max-width: 100%; display: block; }
     font-weight: 500;
     font-size: 0.95rem;
   }
+  .main-nav a { position: relative; padding-bottom: 3px; }
+  .main-nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 100%;
+    bottom: -2px;
+    height: 2px;
+    background: var(--orange);
+    transition: right 0.25s ease;
+  }
   .main-nav a:hover { color: var(--orange-dark); }
+  .main-nav a:hover::after { right: 0; }
 
   .nav-toggle { display: none; }
   .header-actions .btn-primary { padding: 12px 22px; font-size: 0.95rem; }
@@ -602,8 +740,6 @@ img { max-width: 100%; display: block; }
   .hero { padding: 76px 0 90px; }
 
   .hero-cta-row .btn { flex: 0 0 auto; padding: 16px 32px; font-size: 1rem; }
-  .hero-trust { gap: 10px 24px; font-size: 0.9rem; }
-  .hero-trust .icon { width: 18px; height: 18px; }
 
   /* A partir daqui volta a versão "marca d'água" grande atrás do
      conteúdo; a versão em fluxo normal (mobile) some. */

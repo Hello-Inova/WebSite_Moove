@@ -62,6 +62,18 @@
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 
+    <!-- Iconzinhos flutuando pra dar atmosfera (só aparecem em telas
+         maiores, ver CSS — no celular ficariam competindo com a van e a
+         lista de confiança). -->
+    <svg class="hero-float hero-float-1" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <path d="M12 21s-7-6.2-7-11.5A7 7 0 0119 9.5C19 14.8 12 21 12 21z" stroke="#ea580c" stroke-width="1.8"/>
+      <circle cx="12" cy="9.5" r="2.5" fill="#ea580c"/>
+    </svg>
+    <svg class="hero-float hero-float-2" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="12" cy="12" r="9" stroke="#0ea5e9" stroke-width="1.8"/>
+      <path d="M12 7v5l3.5 2" stroke="#0ea5e9" stroke-width="1.8" stroke-linecap="round"/>
+    </svg>
+
     <!-- Van animada como marca d'água do fundo — bem translúcida, só pra
          dar textura/identidade à seção sem competir com o texto. -->
     <svg class="hero-van-bg" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -224,6 +236,10 @@
     </div>
   </section>
 
+  <div class="wave-divider wave-divider-1" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,20 C960,40 1200,10 1440,30 L1440,60 L0,60 Z"/></svg>
+  </div>
+
   <!-- ===================== COMO FUNCIONA ===================== -->
   <section class="section como-funciona" id="como-funciona">
     <div class="container">
@@ -260,6 +276,10 @@
       </div>
     </div>
   </section>
+
+  <div class="wave-divider wave-divider-2" aria-hidden="true">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C240,60 480,0 720,20 C960,40 1200,10 1440,30 L1440,60 L0,60 Z"/></svg>
+  </div>
 
   <!-- ===================== CTA BANNER ===================== -->
   <section class="cta-banner">
@@ -346,9 +366,7 @@
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo-chip">
-        <img src="assets/logo.png" alt="Moove" class="brand-logo footer-logo" />
-      </div>
+      <img src="assets/logo.png" alt="Moove" class="brand-logo footer-logo" />
       <p>Rastreamento e gestão de transporte escolar pra quem dirige.</p>
     </div>
 
