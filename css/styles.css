@@ -232,12 +232,12 @@ img { max-width: 100%; display: block; }
 .hero-blob-1 { width: 260px; height: 260px; background: var(--orange-light); top: -80px; right: -60px; }
 .hero-blob-2 { width: 220px; height: 220px; background: #bae6fd; bottom: -60px; left: -70px; opacity: 0.4; }
 
-.hero-grid {
+.hero > .container {
   position: relative;
   z-index: 1;
-  display: grid;
-  gap: 40px;
 }
+
+.hero-copy-solo { max-width: 640px; }
 
 .eyebrow {
   display: inline-block;
@@ -285,52 +285,19 @@ img { max-width: 100%; display: block; }
 .hero-trust li { display: flex; align-items: center; gap: 8px; }
 .hero-trust .icon { width: 18px; height: 18px; color: var(--orange); flex-shrink: 0; }
 
-/* ---------- Ilustração da van ---------- */
-.hero-art { position: relative; }
-
-.road-scene {
-  position: relative;
-  background: var(--white);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-md);
-  padding: 30px 10px 0;
-  overflow: hidden;
-}
-
-.sky-dot { position: absolute; border-radius: 50%; background: var(--orange-light); opacity: 0.6; }
-.sky-dot-1 { width: 14px; height: 14px; top: 20px; left: 24px; animation: float 5s ease-in-out infinite; }
-.sky-dot-2 { width: 8px; height: 8px; top: 44px; left: 70px; animation: float 6s ease-in-out infinite 0.5s; }
-.sky-dot-3 { width: 10px; height: 10px; top: 16px; right: 40px; animation: float 4.5s ease-in-out infinite 1s; }
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.gps-pulse {
+/* ---------- Van animada como marca d'água do fundo do hero ---------- */
+/* Grande, bem translúcida, atrás de todo o conteúdo — dá pra reconhecer que
+   é uma van, mas não compete com o texto. `pointer-events: none` pra nunca
+   atrapalhar clique em nada por cima dela. */
+.hero-van-bg {
   position: absolute;
-  top: 30px;
-  right: 18%;
-  width: 10px;
-  height: 10px;
-}
-.gps-pulse span {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  background: var(--orange);
-}
-.gps-pulse span:nth-child(1) { animation: gps-ping 2.2s ease-out infinite; opacity: 0.6; }
-.gps-pulse span:nth-child(2) { animation: gps-ping 2.2s ease-out infinite 0.5s; opacity: 0.6; }
-.gps-pulse span:nth-child(3) { position: relative; box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.25); }
-@keyframes gps-ping {
-  0% { transform: scale(1); opacity: 0.7; }
-  100% { transform: scale(4.5); opacity: 0; }
-}
-
-.van-svg {
-  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+  width: min(900px, 130vw);
   height: auto;
-  display: block;
+  right: -8%;
+  bottom: -6%;
+  opacity: 0.09;
   animation: van-bounce 2.6s ease-in-out infinite;
   transform-origin: 50% 100%;
 }
@@ -348,28 +315,31 @@ img { max-width: 100%; display: block; }
   to { transform: rotate(360deg); }
 }
 @media (prefers-reduced-motion: reduce) {
-  .van-svg, .van-wheel, .sky-dot, .gps-pulse span { animation: none; }
+  .hero-van-bg, .van-wheel { animation: none; }
 }
 
-.road {
-  height: 22px;
-  margin-top: -4px;
-  background-image: repeating-linear-gradient(90deg, var(--navy) 0 26px, transparent 26px 46px);
-  background-size: 46px 4px;
+/* Tira de "pista" tracejada correndo no rodapé do hero — mesma ideia da
+   rota em movimento, agora ocupando a largura toda da seção. */
+.hero-road-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 6px;
+  z-index: 0;
+  background-image: repeating-linear-gradient(90deg, var(--navy) 0 22px, transparent 22px 40px);
+  background-size: 40px 3px;
   background-repeat: repeat-x;
   background-position: center;
-  border-radius: 0 0 var(--radius) var(--radius);
-  background-color: var(--gray-100);
-  position: relative;
-  overflow: hidden;
+  opacity: 0.25;
   animation: road-move 1.2s linear infinite;
 }
 @keyframes road-move {
   from { background-position: 0 center; }
-  to { background-position: -46px center; }
+  to { background-position: -40px center; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .road { animation: none; }
+  .hero-road-strip { animation: none; }
 }
 
 /* ---------- Seções genéricas ---------- */
@@ -615,8 +585,8 @@ img { max-width: 100%; display: block; }
   .nav-toggle { display: none; }
   .header-actions .btn-primary { padding: 12px 22px; font-size: 0.95rem; }
 
-  .hero-grid { grid-template-columns: 1.05fr 0.95fr; align-items: center; gap: 56px; }
   .hero { padding: 76px 0 90px; }
+  .hero-trust-row { flex-direction: row; flex-wrap: wrap; gap: 20px; }
 
   .grid-3 { grid-template-columns: repeat(3, 1fr); }
   .grid-4 { grid-template-columns: repeat(4, 1fr); }

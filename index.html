@@ -62,8 +62,38 @@
     <div class="hero-blob hero-blob-1" aria-hidden="true"></div>
     <div class="hero-blob hero-blob-2" aria-hidden="true"></div>
 
-    <div class="container hero-grid">
-      <div class="hero-copy" data-reveal>
+    <!-- Van animada como marca d'água do fundo — bem translúcida, só pra
+         dar textura/identidade à seção sem competir com o texto. -->
+    <svg class="hero-van-bg" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M30 150 L30 95 Q30 78 48 78 L230 78 Q248 78 258 92 L282 122 Q290 132 290 145 L290 150 Z" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
+      <path d="M60 78 L60 130 M120 78 L120 130 M180 78 L180 130" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
+      <rect x="34" y="100" width="20" height="26" rx="4" fill="#1e293b"/>
+      <rect x="64" y="100" width="50" height="26" rx="4" fill="#1e293b"/>
+      <rect x="124" y="100" width="50" height="26" rx="4" fill="#1e293b"/>
+      <path d="M184 100 h40 l18 26 h-58 z" fill="#1e293b"/>
+      <rect x="30" y="130" width="260" height="20" fill="#f97316"/>
+      <text x="150" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="14" fill="#1e293b">ESCOLAR</text>
+      <rect x="30" y="150" width="260" height="10" fill="#1e293b"/>
+      <g class="van-wheel" style="transform-origin: 85px 168px;">
+        <circle cx="85" cy="168" r="20" fill="#1e293b"/>
+        <line x1="85" y1="168" x2="85" y2="151" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+        <line x1="85" y1="168" x2="99.7" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+        <line x1="85" y1="168" x2="70.3" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <circle cx="85" cy="168" r="8" fill="#f97316"/>
+      <g class="van-wheel" style="transform-origin: 245px 168px;">
+        <circle cx="245" cy="168" r="20" fill="#1e293b"/>
+        <line x1="245" y1="168" x2="245" y2="151" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+        <line x1="245" y1="168" x2="259.7" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+        <line x1="245" y1="168" x2="230.3" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+      </g>
+      <circle cx="245" cy="168" r="8" fill="#f97316"/>
+    </svg>
+
+    <div class="hero-road-strip" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="hero-copy hero-copy-solo" data-reveal>
         <span class="eyebrow">Feito para quem dirige a rota escolar</span>
         <h1>Sua van, seu ônibus, sua kombi — <span class="text-accent">rastreados em tempo real.</span></h1>
         <p class="hero-sub">
@@ -81,50 +111,11 @@
           </a>
         </div>
 
-        <ul class="hero-trust">
+        <ul class="hero-trust hero-trust-row">
           <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Sem taxa de adesão</li>
           <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cadastro em minutos</li>
           <li><svg class="icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Cancele quando quiser</li>
         </ul>
-      </div>
-
-      <div class="hero-art" data-reveal data-reveal-delay="1">
-        <div class="road-scene">
-          <div class="sky-dot sky-dot-1" aria-hidden="true"></div>
-          <div class="sky-dot sky-dot-2" aria-hidden="true"></div>
-          <div class="sky-dot sky-dot-3" aria-hidden="true"></div>
-
-          <div class="gps-pulse" aria-hidden="true"><span></span><span></span><span></span></div>
-
-          <svg class="van-svg" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Van escolar animada">
-            <ellipse cx="170" cy="178" rx="140" ry="10" fill="#0f172a" opacity="0.12"/>
-            <path d="M30 150 L30 95 Q30 78 48 78 L230 78 Q248 78 258 92 L282 122 Q290 132 290 145 L290 150 Z" fill="#ffffff" stroke="#1e293b" stroke-width="4"/>
-            <path d="M60 78 L60 130 M120 78 L120 130 M180 78 L180 130" stroke="#1e293b" stroke-width="4" stroke-linecap="round"/>
-            <rect x="34" y="100" width="20" height="26" rx="4" fill="#1e293b"/>
-            <rect x="64" y="100" width="50" height="26" rx="4" fill="#1e293b"/>
-            <rect x="124" y="100" width="50" height="26" rx="4" fill="#1e293b"/>
-            <path d="M184 100 h40 l18 26 h-58 z" fill="#1e293b"/>
-            <rect x="30" y="130" width="260" height="20" fill="#f97316"/>
-            <text x="150" y="145" text-anchor="middle" font-family="Poppins, sans-serif" font-weight="700" font-size="14" fill="#1e293b">ESCOLAR</text>
-            <rect x="30" y="150" width="260" height="10" fill="#1e293b"/>
-            <g class="van-wheel" style="transform-origin: 85px 168px;">
-              <circle cx="85" cy="168" r="20" fill="#1e293b"/>
-              <line x1="85" y1="168" x2="85" y2="151" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-              <line x1="85" y1="168" x2="99.7" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-              <line x1="85" y1="168" x2="70.3" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-            </g>
-            <circle cx="85" cy="168" r="8" fill="#f97316"/>
-            <g class="van-wheel" style="transform-origin: 245px 168px;">
-              <circle cx="245" cy="168" r="20" fill="#1e293b"/>
-              <line x1="245" y1="168" x2="245" y2="151" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-              <line x1="245" y1="168" x2="259.7" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-              <line x1="245" y1="168" x2="230.3" y2="176.5" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
-            </g>
-            <circle cx="245" cy="168" r="8" fill="#f97316"/>
-            <circle cx="270" cy="112" r="4" fill="#bae6fd"/>
-          </svg>
-        </div>
-        <div class="road" aria-hidden="true"></div>
       </div>
     </div>
   </section>
