@@ -339,7 +339,9 @@ img { max-width: 100%; display: block; }
   50% { transform: translateY(-4px) rotate(-0.3deg); }
 }
 .van-wheel {
-  transform-origin: center;
+  /* Origem do giro vem inline no SVG (transform-origin em px, coordenada
+     local do próprio centro de cada roda) — "center" aqui girava em volta
+     do centro do viewBox inteiro (bug: rodas "voando" pra fora do lugar). */
   animation: wheel-spin 1.4s linear infinite;
 }
 @keyframes wheel-spin {
@@ -522,15 +524,46 @@ img { max-width: 100%; display: block; }
   padding-bottom: 32px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-.footer-logo { height: 26px; filter: brightness(0) invert(1); margin-bottom: 10px; }
+/* Logo colorido (não convertido pra branco) — precisa de um fundo claro
+   por trás pra não perder contraste no rodapé escuro, já que o texto
+   "Moove" do logo é navy. */
+.footer-logo-chip {
+  display: inline-flex;
+  align-items: center;
+  background: var(--white);
+  padding: 8px 14px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+.footer-logo { height: 24px; }
 .footer-brand p { color: #94a3b8; font-size: 0.88rem; max-width: 32ch; }
 
 .footer-nav { display: flex; flex-direction: column; gap: 10px; font-size: 0.9rem; }
 .footer-nav a:hover { color: var(--orange-light); }
 
-.footer-contact p { margin: 0 0 6px; font-weight: 600; color: var(--white); font-size: 0.85rem; }
+.footer-contact { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+.footer-contact p { margin: 0; font-weight: 600; color: var(--white); font-size: 0.85rem; }
 .footer-contact a { font-size: 0.9rem; color: #cbd5e1; }
 .footer-contact a:hover { color: var(--orange-light); }
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: #25d366;
+  color: var(--navy-dark) !important;
+  font-weight: 600;
+  font-size: 0.85rem !important;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.whatsapp-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 211, 102, 0.35);
+  color: var(--navy-dark) !important;
+}
+.whatsapp-link .icon-inline { width: 16px; height: 16px; }
 
 .footer-bottom { padding: 20px 20px 26px; font-size: 0.8rem; color: #64748b; text-align: center; }
 
