@@ -597,13 +597,21 @@ img { max-width: 100%; display: block; }
   padding-bottom: 32px;
   border-bottom: 1px solid rgba(255,255,255,0.08);
 }
-/* Sem fundo/chip atrás do logo — ele vira branco (o original é quase todo
-   navy, ficaria invisível no rodapé escuro sem isso) com um leve brilho
-   laranja de assinatura da marca. */
+/* Sem fundo/chip atrás do logo — mantém a ilustração colorida original
+   (a van em branco/amarelo/azul + texto "Moove" navy). O texto navy some
+   num fundo navy escuro sozinho, então em vez de caixa branca usamos um
+   contorno fino claro ao redor de cada forma (várias drop-shadow com
+   offsets pequenos em direções diferentes = efeito de "stroke"), que dá
+   contraste sem nenhum retângulo de fundo. */
 .footer-logo {
-  height: 26px;
+  height: 30px;
   margin-bottom: 12px;
-  filter: brightness(0) invert(1) drop-shadow(0 0 10px rgba(249, 115, 22, 0.35));
+  filter:
+    drop-shadow(1px 0 0 rgba(255, 255, 255, 0.85))
+    drop-shadow(-1px 0 0 rgba(255, 255, 255, 0.85))
+    drop-shadow(0 1px 0 rgba(255, 255, 255, 0.85))
+    drop-shadow(0 -1px 0 rgba(255, 255, 255, 0.85))
+    drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 .footer-brand p { color: #94a3b8; font-size: 0.88rem; max-width: 32ch; }
 
