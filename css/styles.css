@@ -519,6 +519,86 @@ img { max-width: 100%; display: block; }
 .step h3 { font-size: 1rem; color: var(--white); margin-bottom: 6px; }
 .step p { color: #cbd5e1; font-size: 0.9rem; margin: 0; }
 
+/* ---------- Fluxo de coleta e entrega (dentro de "Como funciona") ---------- */
+.rota-flow { margin-top: 56px; }
+.rota-flow-title {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--white);
+  margin: 0 0 28px;
+}
+.rota-fluxo { margin-bottom: 24px; }
+.rota-fluxo-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--orange-light);
+  margin-bottom: 12px;
+}
+.rota-fluxo-label-volta { color: #fdba74; }
+
+.rota-etapas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+.rota-etapa {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  text-align: left;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.rota-etapa:hover { transform: translateY(-2px); background: rgba(255, 255, 255, 0.1); }
+.rota-etapa-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rota-etapa-icon svg { width: 20px; height: 20px; }
+.rota-etapa-icon-volta { background: var(--orange-dark); }
+.rota-etapa h4 { color: var(--white); font-size: 0.95rem; margin: 0 0 2px; font-family: var(--font-heading); }
+.rota-etapa p { color: #cbd5e1; font-size: 0.85rem; margin: 0; }
+
+.rota-etapa-seta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+.rota-etapa-seta svg { width: 20px; height: 20px; }
+
+.rota-flow-aviso {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  margin-top: 8px;
+}
+.rota-flow-aviso svg { flex-shrink: 0; width: 18px; height: 18px; color: #f87171; margin-top: 2px; }
+.rota-flow-aviso p { margin: 0; font-size: 0.88rem; color: #fecaca; }
+.rota-flow-aviso strong { color: #fff; }
+
 /* ---------- CTA banner ---------- */
 .cta-banner {
   position: relative;
@@ -686,6 +766,10 @@ img { max-width: 100%; display: block; }
 
 @media (min-width: 720px) {
   .steps { grid-template-columns: repeat(4, 1fr); }
+
+  .rota-etapas { flex-direction: row; align-items: stretch; }
+  .rota-etapa { flex-direction: column; text-align: center; }
+  .rota-etapa-seta { transform: none; }
   .steps-line {
     display: block;
     position: absolute;
