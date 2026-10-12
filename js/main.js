@@ -4,22 +4,34 @@
   /* ---------- Menu mobile ---------- */
   var navToggle = document.getElementById("nav-toggle");
   var mobileNav = document.getElementById("mobile-nav");
+  var navBackdrop = document.getElementById("mobile-nav-backdrop");
+  var navClose = document.getElementById("mobile-nav-close");
 
   if (navToggle && mobileNav) {
+    var setMobileNavOpen = function (open) {
+      navToggle.setAttribute("aria-expanded", String(open));
+      navToggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+      mobileNav.classList.toggle("is-open", open);
+      if (navBackdrop) navBackdrop.classList.toggle("is-open", open);
+      document.body.classList.toggle("menu-open", open);
+    };
+
     navToggle.addEventListener("click", function () {
       var isOpen = navToggle.getAttribute("aria-expanded") === "true";
-      navToggle.setAttribute("aria-expanded", String(!isOpen));
-      navToggle.setAttribute("aria-label", isOpen ? "Abrir menu" : "Fechar menu");
-      mobileNav.classList.toggle("is-open", !isOpen);
+      setMobileNavOpen(!isOpen);
+    });
+
+    if (navClose) navClose.addEventListener("click", function () { setMobileNavOpen(false); });
+    if (navBackdrop) navBackdrop.addEventListener("click", function () { setMobileNavOpen(false); });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape") setMobileNavOpen(false);
     });
 
     // Fecha o menu ao clicar em qualquer link (rolagem pra âncora já
     // aconteceu, não faz sentido manter a gaveta aberta por cima do conteúdo).
     mobileNav.querySelectorAll("a").forEach(function (link) {
       link.addEventListener("click", function () {
-        navToggle.setAttribute("aria-expanded", "false");
-        navToggle.setAttribute("aria-label", "Abrir menu");
-        mobileNav.classList.remove("is-open");
+        setMobileNavOpen(false);
       });
     });
   }

@@ -47,11 +47,16 @@
     </div>
   </div>
 
-  <div class="mobile-nav-panel" id="mobile-nav">
+  <div class="mobile-nav-backdrop" id="mobile-nav-backdrop" aria-hidden="true"></div>
+  <nav class="mobile-nav-panel" id="mobile-nav" aria-label="Menu principal">
+    <div class="mobile-nav-panel-header">
+      <span>Menu</span>
+      <button class="mobile-nav-close" id="mobile-nav-close" type="button" aria-label="Fechar menu">×</button>
+    </div>
     <a href="#recursos">Recursos</a>
     <a href="#como-funciona">Como funciona</a>
     <a href="#faq">Perguntas frequentes</a>
-  </div>
+  </nav>
 </header>
 
 <main id="conteudo">
