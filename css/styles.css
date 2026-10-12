@@ -47,6 +47,7 @@ body {
   background: var(--white);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  padding-bottom: 84px;
 }
 
 h1, h2, h3 {
@@ -183,6 +184,19 @@ img { max-width: 100%; display: block; }
 
 .header-actions .btn-primary { padding: 10px 16px; font-size: 0.88rem; }
 
+/* CTA persistente no celular: a conversão continua disponível mesmo depois
+   que a pessoa sai do hero. A margem inferior no body evita que ele cubra
+   links ou conteúdo no final da página. */
+.mobile-trial-cta {
+  position: fixed;
+  z-index: 110;
+  left: 16px;
+  right: 16px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  min-height: 52px;
+  box-shadow: 0 12px 28px rgba(234, 88, 12, 0.38);
+}
+
 .nav-toggle {
   display: flex;
   flex-direction: column;
@@ -308,6 +322,10 @@ img { max-width: 100%; display: block; }
    com a lista de confiança nem com a van em fluxo do celular). */
 .hero-float { display: none; }
 @media (min-width: 860px) {
+  body { padding-bottom: 0; }
+
+  .mobile-trial-cta { display: none; }
+
   .hero-float {
     display: block;
     position: absolute;
