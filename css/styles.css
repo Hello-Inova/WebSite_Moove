@@ -160,6 +160,17 @@ img { max-width: 100%; display: block; }
   border-color: var(--gray-200);
 }
 
+/* `backdrop-filter` cria um novo bloco de contenção no Safari. Como o menu
+   móvel é fixo e ocupa a tela inteira, o Safari passava a limitá-lo à altura
+   do cabeçalho; o conteúdo da página acabava aparecendo sobre os links.
+   No celular mantemos o cabeçalho opaco e deixamos a gaveta usar a viewport. */
+@media (max-width: 859px) {
+  .site-header {
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: none;
+  }
+}
+
 .header-inner {
   display: flex;
   align-items: center;
